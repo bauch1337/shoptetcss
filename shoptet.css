@@ -1,2 +1,43 @@
 
 
+ body, p, a, li, blockquote, span, div, h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif !important; color: #000; }
+}
+@media (min-width: 992px) {
+    .fitted .navigation-in ul { margin-top: -30px; }
+    .id-1 .fitted .navigation-in ul { margin-top: 0; }
+}
+.site-name { position: absolute; left: -2px; top: -2px; }
+.custom-section { max-width: 1200px; margin: 0 auto; padding: 40px 20px; background-color: #fff; border-radius: 12px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); }
+.custom-section h1, .custom-section h2 { color: #333; text-align: center; margin-bottom: 25px; }
+.custom-section h1 { font-size: 32px; text-transform: uppercase; font-weight: 700; }
+.custom-section h2 { font-size: 28px; }
+.custom-section p { font-size: 18px; color: #555; line-height: 1.8; text-align: center; max-width: 900px; margin: 0 auto 20px auto; }
+.custom-section .highlight { font-weight: 400; color: #c1a145; margin-bottom: 20px; }
+.custom-section .custom-link { display: block; padding: 10px 20px; background-color: #c0a045; color: #fff; border-radius: 8px; transition: background-color 0.3s ease; width: fit-content; margin: 20px auto; text-align: center;}
+.custom-section .custom-link:hover { background-color: #b08a3c; }
+.bubbles-section-custom { display: flex; justify-content: space-around; align-items: flex-start; margin-top: 40px; gap: 40px;}
+.bubble-custom { text-align: center; width: 30%; }
+.bubble-custom img { width: 100%; max-width: 150px; height: auto; border-radius: 50%; margin-bottom: 15px; }
+.bubble-custom p { font-size: 16px; color: #333; font-weight: 400; text-transform: uppercase; text-align: center; line-height: 1.5; max-width: 90%; margin: 0 auto; }
+.custom-footer-section { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.custom-footer-section a { display: inline-block; margin: 10px 0; padding: 12px 24px; background-color: #c0a045; color: #fff; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 700; text-align: center; width: 100%; max-width: 250px; box-sizing: border-box; }
+.custom-footer-section a:hover { background-color: #a58434; }
+.custom-footer-section a:first-child { background-color: #c0a045; }
+.custom-footer-section a:first-child:hover { background-color: #a58434; }
+
+@media (max-width: 768px) {
+    .bubbles-section-custom { flex-direction: column; align-items: center; gap: 20px; }
+    .bubble-custom { width: 80%; }
+}
+@media (max-width: 480px) {
+    .bubble-custom { width: 100%; }
+    .custom-section h1, .custom-section h2 { font-size: 24px; }
+    .custom-section p { font-size: 16px; }
+    .custom-footer-section a { padding: 10px 20px; }
+}
+@media (max-width: 480px) {
+    .custom-footer-section a {
+        width: 100%; /* Na mobilních zařízeních budou tlačítka plnou šířkou rodiče */
+        max-width: 100%; /* Zajistí, že tlačítka nebudou přesahovat na menších obrazovkách */
+    }
+}
