@@ -105,6 +105,6 @@ h1.header-title>span, h2.header-title>span {display: none;}
 @media (max-width: 480px) {
     .custom-footer-section a {
         width: 100%; /* Na mobilních zařízeních budou tlačítka plnou šířkou rodiče */
-        max-width: 100%; /* Zajistí, že tlačítka nebudou přesahovat na menších obrazovkách */
+
     }
 }
