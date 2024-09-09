@@ -15,8 +15,8 @@ p, .text-content ul li, .siteCookies__text, .order-button-text, .order-button-su
 .siteCookies__text{color:white;}
 .order-button-text{color:white;}
 .order-button-suffix{color:white;}
-.contact-link { display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; border-radius: 4px; transition: background-color 0.3s ease; }
-.contact-link:hover { background-color: #0056b3;}
+.contact-link { display: inline-block; padding: 10px 20px; background-color: #c1a145; color: #fff; border-radius: 4px; transition: background-color 0.3s ease; }
+.contact-link:hover { background-color: #c1a145;}
 @media (max-width: 768px) {
     .modern-section { flex-direction: column; align-items: center;}
     .text-content { max-width: 100%; padding-right: 0;}
