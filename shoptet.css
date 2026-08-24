@@ -86,13 +86,18 @@ a.btn.btn-default {
    4. HEADER
    ========================================================== */
 
+/* ==========================================================
+   LOGO – DESKTOP + STICKY HEADER
+   Zachování původní pozice, pouze odstranění clippingu
+   ========================================================== */
+
 .site-name {
     position: absolute !important;
 
     left: -2px !important;
-    top: 8px !important;
+    top: -2px !important;
 
-    z-index: 1000 !important;
+    z-index: 1002 !important;
 
     overflow: visible !important;
 }
@@ -105,20 +110,41 @@ a.btn.btn-default {
 .site-name img {
     display: block !important;
 
-    max-width: none;
+    position: relative !important;
 
-    position: relative;
-    z-index: 1001;
+    z-index: 1003 !important;
 
     overflow: visible !important;
 }
 
-/* Waltz nesmí logo oříznout */
+
+/* ==========================================================
+   POVOLENÍ LOGA MIMO BOX HEADERU
+   ========================================================== */
+
 .header-top,
 .header-navigation,
 .navigation-wrapper,
-.navigation-in {
+.navigation-in,
+.navigation-buttons {
     overflow: visible !important;
+}
+
+
+/* ==========================================================
+   STICKY / SCROLLED HEADER
+   Logo si zachová stejnou vazbu jako před úpravou
+   ========================================================== */
+
+.scrolled .site-name {
+    left: -2px !important;
+    top: -2px !important;
+
+    transform: none !important;
+}
+
+.scrolled .site-name img {
+    transform: none !important;
 }
 
 .scrolled .header-navigation {
