@@ -2110,3 +2110,22 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 #footer #signature a {
     font-size: 12px !important;
 }
+
+/* ==========================================================
+   21. SKRÝT SHOPTET BRANDING
+   ========================================================== */
+
+/* "Vytvořeno v Shoptetu" / Shoptet signature */
+#footer #signature,
+#footer .signature,
+#footer .shoptet-signature,
+#footer [class*="signature"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
