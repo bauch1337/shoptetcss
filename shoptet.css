@@ -671,6 +671,19 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
      * Reset desktopových posunů navigace.
      */
 
+    /*
+     * SAFE ZONE PRO ZAVÍRACÍ X
+     *
+     * Mobilní Waltz má zavírací X v pravém horním rohu.
+     * První položku menu proto nezačínáme ve stejné výšce.
+     * Celý seznam se posune pod X, takže první chevron už
+     * nemůže zavírací tlačítko překrývat.
+     */
+    .navigation-in > ul {
+        padding-top: 58px !important;
+        box-sizing: border-box !important;
+    }
+
     .navigation-in > ul > li {
         top: auto !important;
     }
