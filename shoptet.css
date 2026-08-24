@@ -87,9 +87,38 @@ a.btn.btn-default {
    ========================================================== */
 
 .site-name {
-    position: absolute;
-    left: -2px;
-    top: -2px;
+    position: absolute !important;
+
+    left: -2px !important;
+    top: 8px !important;
+
+    z-index: 1000 !important;
+
+    overflow: visible !important;
+}
+
+.site-name a {
+    display: block !important;
+    overflow: visible !important;
+}
+
+.site-name img {
+    display: block !important;
+
+    max-width: none;
+
+    position: relative;
+    z-index: 1001;
+
+    overflow: visible !important;
+}
+
+/* Waltz nesmí logo oříznout */
+.header-top,
+.header-navigation,
+.navigation-wrapper,
+.navigation-in {
+    overflow: visible !important;
 }
 
 .scrolled .header-navigation {
