@@ -680,7 +680,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
      * nemůže zavírací tlačítko překrývat.
      */
     .navigation-in > ul {
-        padding-top: 58px !important;
+        padding-top: 28px !important;
         box-sizing: border-box !important;
     }
 
