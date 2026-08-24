@@ -1,12 +1,12 @@
 /* ==========================================================
    VA-PAX.CZ
-   MASTER STYLESHEET
-   Shoptet Waltz
+   MASTER CSS
+   Shoptet / Waltz
    ========================================================== */
 
 
 /* ==========================================================
-   ZÁKLADNÍ ÚPRAVY
+   1. ZÁKLAD
    ========================================================== */
 
 h1.header-title > span,
@@ -37,7 +37,7 @@ a,
 
 
 /* ==========================================================
-   COLORBOX / POPUP
+   2. COLORBOX / POPUP
    ========================================================== */
 
 #cboxLoadedContent {
@@ -55,7 +55,7 @@ a,
 
 
 /* ==========================================================
-   TLAČÍTKA
+   3. BUTTONS
    ========================================================== */
 
 .wp-block-button.is-style-primary .wp-block-button__link {
@@ -83,7 +83,7 @@ a.btn.btn-default {
 
 
 /* ==========================================================
-   HEADER
+   4. HEADER
    ========================================================== */
 
 .site-name {
@@ -98,7 +98,7 @@ a.btn.btn-default {
 
 
 /* ==========================================================
-   HOME BUTTON
+   5. HOME BUTTON
    ========================================================== */
 
 .home-btn {
@@ -111,37 +111,51 @@ a.btn.btn-default {
 
 
 /* ==========================================================
-   STARŠÍ SK / IMAGE PRVKY
+   6. STARŠÍ IMAGE PRVKY
    ========================================================== */
 
 .imgg {
-    background-image: url("https://i.ibb.co/3S6VVtt/slovakia-1758917-340-kopie.png");
+    background-image:
+        url("https://i.ibb.co/3S6VVtt/slovakia-1758917-340-kopie.png");
+
     margin: -3% auto 0 22%;
+
     display: block;
+
     background-repeat: no-repeat;
+
     width: 68px;
     height: 42px;
 }
 
+
 img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb285b5"] {
     width: 17%;
     height: 91.2px;
+
     display: block;
+
     margin: 0 auto;
 }
 
 
 /* ==========================================================
-   HLAVNÍ NAVIGACE – DESKTOP
+   7. DESKTOP NAVIGACE
    ========================================================== */
 
 @media (min-width: 1001px) {
 
     /*
-     * Posouváme pouze hlavní menu.
-     * Původní ".navigation-in ul" posouvalo i submenu
-     * a způsobovalo konflikty.
+     * DŮLEŽITÉ:
+     *
+     * > ul = pouze první úroveň.
+     *
+     * Starý kód používal:
+     * .navigation-in ul
+     *
+     * takže zasahoval zároveň i dropdowny.
      */
+
     .fitted .navigation-in > ul {
         margin-top: -30px;
     }
@@ -151,21 +165,43 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     }
 
 
-    /*
-     * Každá položka menu drží pouze své vlastní submenu.
-     */
-    .navigation-in > ul > li {
-        position: relative;
+    .navigation-in > ul {
+        overflow: visible !important;
+    }
+
+
+    .navigation-in {
+        overflow: visible !important;
+    }
+
+
+    .header-navigation {
+        overflow: visible !important;
     }
 
 
     /*
-     * Text hlavního menu.
-     * Původní vzhled hlavičky ponechán,
-     * ale omezen pouze na LEVEL 1.
+     * Každý hlavní LI je rodič svého dropdownu.
      */
+
+    .navigation-in > ul > li {
+        position: relative !important;
+
+        overflow: visible !important;
+
+        z-index: 10;
+    }
+
+
+    /*
+     * HLAVNÍ TEXT MENU
+     *
+     * Zachovává původní vzhled va-pax.
+     */
+
     .navigation-in > ul > li > a b {
         position: relative;
+
         top: 27px;
 
         font-size: 130%;
@@ -184,7 +220,49 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
 
     /* ======================================================
-       NOVÝ DROPDOWN
+       HOVER BRIDGE
+       ====================================================== */
+
+    /*
+     * Tohle je hlavní oprava deadzone.
+     *
+     * Transparentní plocha patří přímo rodičovskému LI.
+     *
+     * Když kurzor jede:
+     *
+     * MAGAZÍN
+     *    ↓
+     * [mezera]
+     *    ↓
+     * DROPDOWN
+     *
+     * stále fyzicky hoveruje nad stejným LI.
+     *
+     * Výška hero/headeru už tedy není rozhodující.
+     */
+
+    .navigation-in > ul > li:has(> ul.menu-level-2)::after {
+        content: "";
+
+        position: absolute;
+
+        left: -12px;
+        right: -12px;
+
+        top: 100%;
+
+        height: 55px;
+
+        background: transparent;
+
+        pointer-events: auto;
+
+        z-index: 99997;
+    }
+
+
+    /* ======================================================
+       DROPDOWN BOX
        ====================================================== */
 
     .navigation-in > ul > li > ul.menu-level-2 {
@@ -192,32 +270,68 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
         position: absolute !important;
 
-        top: calc(100% + 10px) !important;
+        /*
+         * Dropdown je prakticky nalepený pod skutečný LI.
+         * Už ho neumisťujeme podle hero obrázku.
+         */
+
+        top: calc(100% + 6px) !important;
         left: 50% !important;
 
         width: max-content !important;
+
         min-width: 250px !important;
-        max-width: 330px !important;
+        max-width: 340px !important;
+
+        max-height: min(580px, 70vh) !important;
 
         margin: 0 !important;
+
         padding: 8px !important;
 
-        background: rgba(10, 10, 10, 0.97) !important;
+        /*
+         * NOVĚ BÍLÝ
+         */
 
-        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        background-color: rgba(255, 255, 255, 0.985) !important;
+
+        border:
+            1px solid
+            rgba(0, 0, 0, 0.10) !important;
+
         border-radius: 12px !important;
 
         box-shadow:
-            0 22px 55px rgba(0, 0, 0, 0.4),
-            0 4px 14px rgba(0, 0, 0, 0.25) !important;
+            0 20px 55px rgba(0, 0, 0, 0.20),
+            0 4px 12px rgba(0, 0, 0, 0.10) !important;
 
         list-style: none !important;
 
+        /*
+         * Magazin může mít hodně článků.
+         */
+
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+
+        overscroll-behavior: contain;
+
+        white-space: normal !important;
+
+        /*
+         * CLOSED STATE
+         */
+
         opacity: 0 !important;
+
         visibility: hidden !important;
+
         pointer-events: none !important;
 
-        transform: translate(-50%, 7px) !important;
+        transform:
+            translate(-50%, 7px) !important;
+
+        transform-origin: top center;
 
         transition:
             opacity 0.16s ease,
@@ -225,19 +339,14 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
             visibility 0s linear 0.14s !important;
 
         z-index: 99999 !important;
-
-        overflow: visible !important;
-
-        white-space: normal !important;
     }
 
 
     /*
-     * NEVIDITELNÝ MOST
-     *
-     * Vyřeší problém, kdy při cestě kurzorem
-     * z názvu "PAX" do dropdownu menu zmizelo.
+     * Druhý pomocný most přímo u submenu.
+     * Funguje společně s ::after rodičovského LI.
      */
+
     .navigation-in > ul > li > ul.menu-level-2::before {
         content: "";
 
@@ -246,30 +355,40 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
         left: 0;
         right: 0;
 
-        top: -18px;
-        height: 18px;
+        top: -20px;
 
-        background: transparent;
+        height: 20px;
+
+        background-color: transparent;
 
         display: block;
+
+        pointer-events: auto;
     }
 
 
+    /* ======================================================
+       OPEN STATE
+       ====================================================== */
+
     /*
-     * Otevře POUZE submenu konkrétní položky.
+     * Otevře se POUZE submenu konkrétního LI.
      *
-     * Původně tam bylo:
+     * Už nepoužíváme:
+     *
      * .navigation-in:hover ul.menu-level-2
-     *
-     * což otevíralo menu podle hoveru celé navigace.
      */
+
     .navigation-in > ul > li:hover > ul.menu-level-2,
     .navigation-in > ul > li:focus-within > ul.menu-level-2 {
         opacity: 1 !important;
+
         visibility: visible !important;
+
         pointer-events: auto !important;
 
-        transform: translate(-50%, 0) !important;
+        transform:
+            translate(-50%, 0) !important;
 
         transition:
             opacity 0.16s ease,
@@ -279,7 +398,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
 
     /* ======================================================
-       POLOŽKY DROPDOWNU
+       DROPDOWN ITEMS
        ====================================================== */
 
     .navigation-in > ul > li > ul.menu-level-2 > li {
@@ -287,65 +406,105 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
         position: relative !important;
 
-        margin: 0 !important;
-        padding: 0 !important;
+        float: none !important;
 
-        list-style: none !important;
+        width: 100% !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
 
         border: 0 !important;
 
         background: transparent !important;
+
+        list-style: none !important;
     }
 
+
+    /*
+     * Odstranění Shoptet puntíků.
+     */
 
     .navigation-in > ul > li > ul.menu-level-2 > li::before,
     .navigation-in > ul > li > ul.menu-level-2 > li::after {
         content: none !important;
+
         display: none !important;
     }
 
+
+    /* ======================================================
+       DROPDOWN LINKS
+       ====================================================== */
 
     .navigation-in > ul > li > ul.menu-level-2 > li > a {
         display: block !important;
 
         position: relative !important;
 
-        margin: 0 !important;
-        padding: 11px 14px !important;
+        float: none !important;
 
-        border: 0 !important;
+        width: 100% !important;
+
+        box-sizing: border-box !important;
+
+        margin: 0 !important;
+
+        padding:
+            11px
+            14px !important;
+
+        border: none !important;
+
         border-radius: 8px !important;
 
         background: transparent !important;
 
-        color: #fff !important;
+        color: #111 !important;
 
         font-size: 14px !important;
+
         font-weight: 500 !important;
-        line-height: 1.35 !important;
+
+        line-height: 1.4 !important;
 
         text-align: left !important;
+
         text-decoration: none !important;
 
         white-space: normal !important;
 
+        overflow-wrap: anywhere;
+
+        text-shadow: none !important;
+
         transition:
-            background-color 0.15s ease,
-            padding-left 0.15s ease !important;
+            background-color 0.14s ease,
+            padding-left 0.14s ease,
+            color 0.14s ease !important;
     }
 
 
     /*
-     * Shoptet používá uvnitř odkazu <b>.
-     * Zrušíme mu zde desktopový posun hlavního menu.
+     * <b> uvnitř submenu nesmí zdědit desktopový
+     * top:27px z hlavního menu.
      */
+
     .navigation-in > ul > li > ul.menu-level-2 > li > a b {
         position: static !important;
 
         top: auto !important;
 
+        margin: 0 !important;
+
+        padding: 0 !important;
+
         font-size: inherit !important;
+
         font-weight: inherit !important;
+
+        line-height: inherit !important;
 
         color: inherit !important;
 
@@ -353,134 +512,401 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     }
 
 
-    /*
-     * Hover položky.
-     */
+    /* ======================================================
+       ITEM HOVER
+       ====================================================== */
+
     .navigation-in > ul > li > ul.menu-level-2 > li > a:hover,
     .navigation-in > ul > li > ul.menu-level-2 > li > a:focus {
-        background-color: rgba(255, 255, 255, 0.09) !important;
+        background-color:
+            rgba(0, 0, 0, 0.055) !important;
 
-        padding-left: 20px !important;
+        color: #000 !important;
 
-        color: #fff !important;
+        padding-left: 21px !important;
     }
 
 
     /*
-     * Zelený detail při hoveru – navazuje na zelené
-     * akcenty, které už VA-PAX používá.
+     * Zelený detail vlevo.
      */
+
     .navigation-in > ul > li > ul.menu-level-2 > li > a::before {
         content: "";
 
         position: absolute;
 
         left: 8px;
+
         top: 50%;
 
         width: 3px;
+
         height: 0;
 
-        border-radius: 4px;
+        border-radius: 5px;
 
         background-color: #0a9907;
 
         opacity: 0;
 
-        transform: translateY(-50%);
+        transform:
+            translateY(-50%);
 
         transition:
-            height 0.15s ease,
-            opacity 0.15s ease;
+            height 0.14s ease,
+            opacity 0.14s ease;
     }
 
 
     .navigation-in > ul > li > ul.menu-level-2 > li > a:hover::before,
     .navigation-in > ul > li > ul.menu-level-2 > li > a:focus::before {
         height: 17px;
+
         opacity: 1;
     }
 
 
+    /* ======================================================
+       SCROLLBAR MAGAZÍNU
+       ====================================================== */
+
+    .navigation-in > ul > li > ul.menu-level-2 {
+        scrollbar-width: thin;
+
+        scrollbar-color:
+            rgba(0, 0, 0, 0.25)
+            transparent;
+    }
+
+
+    .navigation-in > ul > li > ul.menu-level-2::-webkit-scrollbar {
+        width: 7px;
+    }
+
+
+    .navigation-in > ul > li > ul.menu-level-2::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+
+    .navigation-in > ul > li > ul.menu-level-2::-webkit-scrollbar-thumb {
+        background:
+            rgba(0, 0, 0, 0.20);
+
+        border-radius: 10px;
+
+        border:
+            2px solid
+            #fff;
+    }
+
+
+    /* ======================================================
+       DESKTOP SUBMENU ARROW
+       ====================================================== */
+
     /*
-     * Desktop arrow zatím schováváme.
-     * Působí čistěji a nic neposouvá.
+     * Desktop šipku nepotřebujeme.
+     * Hover je jasný a vzhled zůstane čistý.
      */
-    .submenu-arrow {
-        visibility: hidden;
+
+    .navigation-in > ul > li > .submenu-arrow {
+        display: none !important;
+
+        visibility: hidden !important;
     }
 }
 
 
 /* ==========================================================
-   NAVIGACE – MOBIL / TABLET
+   8. MOBIL + TABLET NAVIGACE
    ========================================================== */
 
 @media (max-width: 1000px) {
 
     .home-btn {
         width: 100%;
+
         margin-top: -17.6%;
     }
 
-    .navigation-in ul li a b {
-        position: static;
 
-        top: auto;
+    /*
+     * Zrušení desktopových textových posunů.
+     */
+
+    .navigation-in ul li a b {
+        position: static !important;
+
+        top: auto !important;
 
         font-size: 115%;
 
-        color: #000;
+        color: #000 !important;
 
-        text-shadow: none;
+        text-shadow: none !important;
     }
+
 
     /*
-     * Na mobilu necháváme submenu uvnitř mobilního menu,
-     * nikoli jako plovoucí desktop dropdown.
+     * LI musí být relative,
+     * protože na pravou stranu umisťujeme šipku.
      */
-    .navigation-in ul.menu-level-2 {
+
+    .navigation-in ul li {
         position: relative;
-
-        top: 0;
-        left: auto;
-
-        margin: 0;
-
-        max-width: none;
-
-        box-shadow: none;
-
-        transform: none;
     }
 
-    .submenu-arrow {
-        position: static;
 
-        visibility: visible;
+    /*
+     * Pokud položka obsahuje submenu,
+     * necháme vpravo místo pro klikací šipku.
+     */
 
-        transform: none;
-
-        color: #000;
-
-        padding-left: 3px;
-
-        margin-top: -4px;
-
-        text-shadow: none;
+    .navigation-in ul li:has(> .submenu-arrow) > a,
+    .navigation-in ul li:has(> ul.menu-level-2) > a {
+        padding-right: 60px !important;
     }
+
+
+    /* ======================================================
+       MOBILNÍ ŠIPKA – OPRAVA
+       ====================================================== */
+
+    /*
+     * Starý CSS ji pouze nastavil visibility,
+     * ale Shoptet/Waltz ji mohl mít zároveň display:none.
+     *
+     * Proto explicitně nastavujeme obojí.
+     */
+
+    .navigation-in ul li > .submenu-arrow {
+        display: flex !important;
+
+        visibility: visible !important;
+
+        opacity: 1 !important;
+
+        position: absolute !important;
+
+        right: 5px !important;
+
+        top: 0 !important;
+
+        width: 52px !important;
+
+        height: 48px !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+
+        align-items: center !important;
+
+        justify-content: center !important;
+
+        color: #111 !important;
+
+        background: transparent !important;
+
+        border: 0 !important;
+
+        transform: none !important;
+
+        text-shadow: none !important;
+
+        cursor: pointer !important;
+
+        z-index: 20 !important;
+
+        font-size: 0 !important;
+
+        line-height: 1 !important;
+
+        -webkit-tap-highlight-color:
+            transparent;
+    }
+
+
+    /*
+     * Vlastní šipka.
+     *
+     * Nespoléháme na font ikonu Shoptetu,
+     * takže bude vidět vždy.
+     */
+
+    .navigation-in ul li > .submenu-arrow::before {
+        content: "" !important;
+
+        display: block !important;
+
+        width: 9px !important;
+
+        height: 9px !important;
+
+        border-right:
+            2px solid
+            #111 !important;
+
+        border-bottom:
+            2px solid
+            #111 !important;
+
+        transform:
+            rotate(45deg) !important;
+
+        transform-origin: center;
+
+        margin-top: -5px;
+
+        transition:
+            transform 0.2s ease !important;
+    }
+
+
+    /*
+     * Shoptet používá různé aktivní class podle verze.
+     * Pokrýváme nejběžnější varianty.
+     */
+
+    .navigation-in ul li.expanded > .submenu-arrow::before,
+    .navigation-in ul li.open > .submenu-arrow::before,
+    .navigation-in ul li.active > .submenu-arrow::before,
+    .navigation-in ul li.menu-expanded > .submenu-arrow::before,
+    .navigation-in ul li > .submenu-arrow.active::before {
+        transform:
+            rotate(225deg) !important;
+
+        margin-top: 5px;
+    }
+
+
+    /*
+     * Jemný touch feedback.
+     */
+
+    .navigation-in ul li > .submenu-arrow:active {
+        background-color:
+            rgba(0, 0, 0, 0.05) !important;
+    }
+
+
+    /* ======================================================
+       MOBILE SUBMENU
+       ====================================================== */
+
+    .navigation-in ul.menu-level-2 {
+        position: relative !important;
+
+        top: auto !important;
+
+        left: auto !important;
+
+        right: auto !important;
+
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        max-width: none !important;
+
+        max-height: none !important;
+
+        margin: 0 !important;
+
+        padding:
+            2px
+            0
+            8px !important;
+
+        background:
+            rgba(0, 0, 0, 0.035) !important;
+
+        border: 0 !important;
+
+        border-radius: 0 !important;
+
+        box-shadow: none !important;
+
+        transform: none !important;
+
+        overflow: visible !important;
+
+        white-space: normal !important;
+    }
+
+
+    /*
+     * Podpoložky na mobilu.
+     */
+
+    .navigation-in ul.menu-level-2 > li {
+        margin: 0 !important;
+
+        padding: 0 !important;
+    }
+
+
+    .navigation-in ul.menu-level-2 > li > a {
+        display: block !important;
+
+        padding:
+            11px
+            22px
+            11px
+            30px !important;
+
+        color: #222 !important;
+
+        font-size: 14px !important;
+
+        line-height: 1.4 !important;
+
+        text-shadow: none !important;
+
+        background: transparent !important;
+    }
+
+
+    .navigation-in ul.menu-level-2 > li > a b {
+        position: static !important;
+
+        top: auto !important;
+
+        color: inherit !important;
+
+        font-size: inherit !important;
+
+        text-shadow: none !important;
+    }
+
+
+    .navigation-in ul.menu-level-2 > li > a:active {
+        background-color:
+            rgba(0, 0, 0, 0.06) !important;
+    }
+
 
     .scrolled .header-navigation {
-        background-color: rgba(155, 155, 155, 0.5);
+        background-color:
+            rgba(155, 155, 155, 0.5);
+
         height: auto;
     }
 
+
     img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb285b5"] {
         width: 50%;
+
         height: auto;
     }
 }
 
+
+/* ==========================================================
+   9. MENŠÍ MOBILY
+   ========================================================== */
 
 @media (max-width: 650px) {
 
@@ -491,12 +917,14 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
 
 /* ==========================================================
-   MODERN SECTION
+   10. MODERN SECTION
    ========================================================== */
 
 .modern-section {
     display: flex;
+
     justify-content: space-between;
+
     align-items: flex-start;
 
     background-color: #fff;
@@ -505,35 +933,50 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
     border-radius: 8px;
 
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 4px 16px
+        rgba(0, 0, 0, 0.1);
 }
+
 
 .text-content {
     max-width: 50%;
+
     padding-right: 20px;
 }
 
+
 .text-content h2 {
     font-size: 24px;
+
     color: #333;
+
     margin-bottom: 20px;
 }
 
+
 .text-content p {
     font-size: 18px;
+
     color: #555;
+
     line-height: 1.6;
+
     margin-bottom: 15px;
 }
 
+
 .text-content ul {
     list-style: none;
+
     padding: 0;
 }
+
 
 .text-content ul li strong {
     color: #333;
 }
+
 
 .contact-link {
     display: inline-block;
@@ -541,14 +984,17 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     padding: 10px 20px;
 
     background-color: #007bff;
+
     color: #fff;
 
     text-decoration: none;
 
     border-radius: 4px;
 
-    transition: background-color 0.3s ease;
+    transition:
+        background-color 0.3s ease;
 }
+
 
 .contact-link:hover {
     background-color: #0056b3;
@@ -556,7 +1002,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
 
 /* ==========================================================
-   CUSTOM SECTION
+   11. CUSTOM SECTION
    ========================================================== */
 
 .custom-section {
@@ -564,14 +1010,19 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
     margin: 0 auto;
 
-    padding: 40px 20px;
+    padding:
+        40px
+        20px;
 
     background-color: #fff;
 
     border-radius: 12px;
 
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 6px 18px
+        rgba(0, 0, 0, 0.1);
 }
+
 
 .custom-section h1,
 .custom-section h2 {
@@ -582,6 +1033,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     margin-bottom: 25px;
 }
 
+
 .custom-section h1 {
     font-size: 32px;
 
@@ -590,9 +1042,11 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     font-weight: 700;
 }
 
+
 .custom-section h2 {
     font-size: 28px;
 }
+
 
 .custom-section p {
     font-size: 18px;
@@ -605,8 +1059,12 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
     max-width: 900px;
 
-    margin: 0 auto 20px;
+    margin:
+        0
+        auto
+        20px;
 }
+
 
 .custom-section .highlight {
     font-weight: 400;
@@ -616,24 +1074,32 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     margin-bottom: 20px;
 }
 
+
 .custom-section .custom-link {
     display: block;
 
-    padding: 10px 20px;
+    padding:
+        10px
+        20px;
 
     background-color: #c0a045;
+
     color: #fff;
 
     border-radius: 8px;
 
-    transition: background-color 0.3s ease;
+    transition:
+        background-color 0.3s ease;
 
     width: fit-content;
 
-    margin: 20px auto;
+    margin:
+        20px
+        auto;
 
     text-align: center;
 }
+
 
 .custom-section .custom-link:hover {
     background-color: #b08a3c;
@@ -641,13 +1107,14 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
 
 /* ==========================================================
-   BUBBLES
+   12. BUBBLES
    ========================================================== */
 
 .bubbles-section-custom {
     display: flex;
 
     justify-content: space-around;
+
     align-items: flex-start;
 
     margin-top: 40px;
@@ -655,21 +1122,26 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     gap: 40px;
 }
 
+
 .bubble-custom {
     text-align: center;
 
     width: 30%;
 }
 
+
 .bubble-custom img {
     width: 100%;
+
     max-width: 150px;
+
     height: auto;
 
     border-radius: 50%;
 
     margin-bottom: 15px;
 }
+
 
 .bubble-custom p {
     font-size: 16px;
@@ -679,6 +1151,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     font-weight: 400;
 
     text-transform: uppercase;
+
     text-align: center;
 
     line-height: 1.5;
@@ -690,7 +1163,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
 
 /* ==========================================================
-   CUSTOM FOOTER
+   13. CUSTOM FOOTER
    ========================================================== */
 
 .custom-footer-section {
@@ -703,14 +1176,18 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     flex-wrap: wrap;
 }
 
+
 .custom-footer-section a {
     display: inline-block;
 
     margin: 10px 0;
 
-    padding: 12px 14px;
+    padding:
+        12px
+        14px;
 
     background-color: #c0a045;
+
     color: #fff;
 
     border-radius: 8px;
@@ -718,20 +1195,24 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     text-decoration: none;
 
     font-size: 16px;
+
     font-weight: 700;
 
     text-align: center;
 
     width: 100%;
+
     max-width: 170px;
 
     box-sizing: border-box;
 }
 
+
 .custom-footer-section a:hover,
 .custom-footer-section a:first-child:hover {
     background-color: #a58434;
 }
+
 
 .custom-footer-section a:first-child {
     background-color: #c0a045;
@@ -739,32 +1220,40 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
 
 /* ==========================================================
-   PAX FEATURE BLOCKS
+   14. PAX FEATURE BLOCK
    ========================================================== */
 
 .pax-feature-block {
     display: flex;
 
     flex-direction: row;
+
     flex-wrap: nowrap;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 40px;
 
     max-width: 1200px;
 
-    margin: 60px auto;
+    margin:
+        60px
+        auto;
 
-    padding: 40px 20px;
+    padding:
+        40px
+        20px;
 
     box-sizing: border-box;
 }
 
+
 .pax-feature-block.reverse {
     flex-direction: row-reverse;
 }
+
 
 .pax-text {
     flex: 1;
@@ -776,6 +1265,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     box-sizing: border-box;
 }
 
+
 .pax-text h2 {
     font-size: 2.6rem;
 
@@ -786,6 +1276,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     color: #000;
 }
 
+
 .pax-text p {
     font-size: 1.8rem;
 
@@ -793,6 +1284,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
     color: #333;
 }
+
 
 .pax-media {
     flex: 1;
@@ -802,13 +1294,17 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     box-sizing: border-box;
 }
 
+
 .pax-media video {
     width: 100%;
+
     height: auto;
 
     border-radius: 16px;
 
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 8px 30px
+        rgba(0, 0, 0, 0.1);
 
     display: block;
 
@@ -817,7 +1313,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
 
 /* ==========================================================
-   PAX HERO
+   15. PAX HERO
    ========================================================== */
 
 .pax-hero {
@@ -825,7 +1321,10 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
     max-width: 1600px;
 
-    margin: 0 auto 60px;
+    margin:
+        0
+        auto
+        60px;
 
     padding: 0 20px;
 
@@ -834,8 +1333,10 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     text-align: center;
 }
 
+
 .pax-hero video {
     width: 100%;
+
     height: auto;
 
     border-radius: 16px;
@@ -844,8 +1345,11 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
     object-fit: cover;
 
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 8px 30px
+        rgba(0, 0, 0, 0.1);
 }
+
 
 .pax-hero h1 {
     margin-top: 25px;
@@ -855,6 +1359,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     font-weight: 800;
 }
 
+
 .pax-hero p {
     font-size: 1.8rem;
 
@@ -862,27 +1367,34 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 
     max-width: 900px;
 
-    margin: 20px auto 0;
+    margin:
+        20px
+        auto
+        0;
 
     color: #333;
 }
 
 
 /* ==========================================================
-   RESPONSIVE CONTENT
+   16. RESPONSIVE CONTENT
    ========================================================== */
 
 @media (max-width: 900px) {
 
     .pax-feature-block {
-        flex-direction: column !important;
+        flex-direction:
+            column !important;
 
         gap: 30px;
 
-        padding: 30px 15px;
+        padding:
+            30px
+            15px;
 
         text-align: center;
     }
+
 
     .pax-text,
     .pax-media {
@@ -891,9 +1403,11 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
         padding: 0;
     }
 
+
     .pax-text h2 {
         font-size: 2.2rem;
     }
+
 
     .pax-text p {
         font-size: 1.6rem;
@@ -901,15 +1415,21 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
         line-height: 1.8;
     }
 
+
     .pax-hero h1 {
         font-size: 2.2rem;
     }
+
 
     .pax-hero p {
         font-size: 1.6rem;
     }
 }
 
+
+/* ==========================================================
+   17. TABLET
+   ========================================================== */
 
 @media (max-width: 768px) {
 
@@ -919,11 +1439,13 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
         align-items: center;
     }
 
+
     .text-content {
         max-width: 100%;
 
         padding-right: 0;
     }
+
 
     .gallery {
         flex-direction: row;
@@ -935,9 +1457,11 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
         gap: 20px;
     }
 
+
     .gallery-item {
         width: 45%;
     }
+
 
     .bubbles-section-custom {
         flex-direction: column;
@@ -947,11 +1471,16 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
         gap: 20px;
     }
 
+
     .bubble-custom {
         width: 80%;
     }
 }
 
+
+/* ==========================================================
+   18. MOBILE
+   ========================================================== */
 
 @media (max-width: 480px) {
 
@@ -959,41 +1488,52 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
         width: 100%;
     }
 
+
     .text-content h2 {
         font-size: 20px;
     }
+
 
     .text-content p,
     .text-content ul li {
         font-size: 16px;
     }
 
+
     .contact-link {
         margin-bottom: 20px;
     }
 
+
     .bubble-custom {
         width: 100%;
     }
+
 
     .custom-section h1,
     .custom-section h2 {
         font-size: 24px;
     }
 
+
     .custom-section p {
         font-size: 16px;
     }
 
+
     .custom-footer-section a {
         width: 100%;
 
-        padding: 10px 20px;
+        padding:
+            10px
+            20px;
     }
+
 
     .pax-text h2 {
         font-size: 2rem;
     }
+
 
     .pax-text p {
         font-size: 1.5rem;
