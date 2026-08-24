@@ -2075,3 +2075,38 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
             0 !important;
     }
 }
+
+/* ==========================================================
+   20. FOOTER COPYRIGHT – STŘED + VĚTŠÍ
+   ========================================================== */
+
+#footer .footer-bottom {
+    text-align: center !important;
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+}
+
+#footer .footer-bottom .container {
+    text-align: center !important;
+}
+
+#footer .footer-bottom .footer-bottom-wrapper,
+#footer .footer-bottom .copyright,
+#footer .footer-bottom .system-footer,
+#footer #signature {
+    float: none !important;
+    display: block !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+}
+
+#footer #signature {
+    margin-top: 6px !important;
+}
+
+#footer .footer-bottom a,
+#footer #signature a {
+    font-size: 12px !important;
+}
