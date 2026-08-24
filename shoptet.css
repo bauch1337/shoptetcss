@@ -290,7 +290,7 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
          * žádné závislosti na výšce hero.
          */
 
-        top: calc(100% - 1px) !important;
+        top: calc(100% - 19px) !important;
 
         left: 50% !important;
 
