@@ -91,38 +91,71 @@ a.btn.btn-default {
    Zachování původní pozice, pouze odstranění clippingu
    ========================================================== */
 
+/* ==========================================================
+   VA-PAX LOGO – NORMAL + STICKY HEADER
+   ========================================================== */
+
 .site-name {
     position: absolute !important;
 
     left: -2px !important;
-    top: -2px !important;
+    top: 0 !important;
 
-    z-index: 1002 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    height: auto !important;
+    max-height: none !important;
 
     overflow: visible !important;
+
+    z-index: 10020 !important;
+
+    /*
+     * Logo zůstane ve stejné oblasti jako původně,
+     * ale už neleze nad horní hranu headeru.
+     */
+    transform: translateY(6px) !important;
 }
 
+
+/* Klikací wrapper loga */
 .site-name a {
     display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    height: auto !important;
+
+    line-height: 0 !important;
+
     overflow: visible !important;
 }
 
+
+/* Samotný obrázek */
 .site-name img {
     display: block !important;
 
+    margin: 0 !important;
+    padding: 0 !important;
+
+    height: auto !important;
+
     position: relative !important;
 
-    z-index: 1003 !important;
-
-    overflow: visible !important;
+    z-index: 10021 !important;
 }
 
 
 /* ==========================================================
-   POVOLENÍ LOGA MIMO BOX HEADERU
+   RODIČE – LOGO SE NESMÍ OŘÍZNOUT
    ========================================================== */
 
 .header-top,
+.header-top-wrapper,
+.header-in,
 .header-navigation,
 .navigation-wrapper,
 .navigation-in,
@@ -132,21 +165,26 @@ a.btn.btn-default {
 
 
 /* ==========================================================
-   STICKY / SCROLLED HEADER
-   Logo si zachová stejnou vazbu jako před úpravou
+   STICKY HEADER PŘI SCROLLU
    ========================================================== */
 
 .scrolled .site-name {
-    left: -2px !important;
-    top: -2px !important;
+    /*
+     * Ve sticky liště už nepoužíváme pevný počet pixelů.
+     * Logo se vystředí podle aktuální výšky lišty.
+     */
 
-    transform: none !important;
+    top: 50% !important;
+
+    transform: translateY(-50%) !important;
+
+    margin: 0 !important;
 }
+
 
 .scrolled .site-name img {
     transform: none !important;
 }
-
 .scrolled .header-navigation {
     background-color: #9b9b9b;
 }
