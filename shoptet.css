@@ -2141,3 +2141,1577 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
 [data-vp-footer].vp-footer-mounted {
     display: block !important;
 }
+
+
+
+
+
+
+<!-- =========================================================
+     VA-PAX — GLOBÁLNÍ SEKCE DOPLŇKY
+
+     VLOŽIT POUZE JEDNOU GLOBÁLNĚ DO SHOPTETU.
+     Ideálně před </body>.
+
+     Automaticky se aktivuje jen na stránce,
+     kde najde naši sekci Příslušenství.
+     ========================================================= -->
+
+<style>
+/* =========================================================
+   SCOPED POUZE POD #vp-global-addons
+   ========================================================= */
+
+#vp-global-addons,
+#vp-global-addons * {
+    box-sizing: border-box;
+}
+
+#vp-global-addons {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 78px;
+    color: #111;
+}
+
+#vp-global-addons a {
+    text-decoration: none !important;
+}
+
+
+/* HEAD */
+
+#vp-global-addons .vp-gd-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 25px;
+}
+
+#vp-global-addons .vp-gd-kicker {
+    display: block;
+    margin: 0 0 9px;
+    color: #888;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+#vp-global-addons .vp-gd-title {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #0a0a0a !important;
+    font-size: clamp(32px,4vw,49px) !important;
+    line-height: 1 !important;
+    font-weight: 700 !important;
+    letter-spacing: -.045em !important;
+}
+
+#vp-global-addons .vp-gd-sub {
+    max-width: 620px;
+    margin: 12px 0 0 !important;
+    padding: 0 !important;
+    color: #777 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+}
+
+
+/* ARROWS */
+
+#vp-global-addons .vp-gd-nav {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 8px;
+}
+
+#vp-global-addons .vp-gd-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid #dedede;
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        background-color .18s ease;
+}
+
+#vp-global-addons .vp-gd-arrow:hover {
+    transform: translateY(-2px);
+    border-color: #bbb;
+    background: #f7f7f7;
+}
+
+
+/* RAIL */
+
+#vp-global-addons .vp-gd-rail {
+    display: flex;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
+    padding: 1px 1px 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+#vp-global-addons .vp-gd-rail::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* CARD */
+
+#vp-global-addons .vp-gd-card {
+    position: relative;
+    display: flex;
+    flex: 0 0 calc((100% - 42px) / 4);
+    flex-direction: column;
+    min-width: 0;
+    min-height: 390px;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    border-radius: 18px;
+    background: #fff;
+    color: #111;
+    scroll-snap-align: start;
+    transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+#vp-global-addons .vp-gd-card:hover {
+    transform: translateY(-3px);
+    border-color: #d5d5d5;
+    box-shadow: 0 14px 32px rgba(0,0,0,.055);
+}
+
+#vp-global-addons .vp-gd-hit {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+}
+
+
+/* IMAGE */
+
+#vp-global-addons .vp-gd-img {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 225px;
+    min-height: 225px;
+    padding: 18px;
+    overflow: hidden;
+    background: #fff;
+}
+
+#vp-global-addons .vp-gd-img img {
+    display: block !important;
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 195px !important;
+    margin: auto !important;
+    object-fit: contain !important;
+}
+
+
+/* BADGES */
+
+#vp-global-addons .vp-gd-badge {
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 27px;
+    padding: 0 10px;
+    border-radius: 999px;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 8px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    box-shadow: 0 6px 15px rgba(0,0,0,.12);
+}
+
+#vp-global-addons .vp-gd-badge.is-new {
+    background: linear-gradient(135deg,#6f49ff,#9a67ff);
+}
+
+#vp-global-addons .vp-gd-badge.is-action {
+    background: linear-gradient(135deg,#ff8a24,#ff6b19);
+}
+
+#vp-global-addons .vp-gd-badge.is-sale {
+    background: linear-gradient(135deg,#ff3b47,#e9162d);
+}
+
+#vp-global-addons .vp-gd-badge.is-tip {
+    background: linear-gradient(135deg,#1784ff,#0067db);
+}
+
+
+/* BODY */
+
+#vp-global-addons .vp-gd-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    padding: 17px;
+}
+
+#vp-global-addons .vp-gd-name {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #111 !important;
+    font-size: 15px !important;
+    line-height: 1.25 !important;
+    font-weight: 700 !important;
+}
+
+#vp-global-addons .vp-gd-stock {
+    min-height: 14px;
+    margin-top: 7px;
+    color: #777;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 9px;
+    line-height: 1.3;
+}
+
+#vp-global-addons .vp-gd-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+#vp-global-addons .vp-gd-price {
+    min-width: 0;
+    color: #111;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 13px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+#vp-global-addons .vp-gd-detail {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-width: 65px;
+    height: 35px;
+    padding: 0 11px;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 9px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+
+/* ALL */
+
+#vp-global-addons .vp-gd-all {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    margin-top: 18px;
+    padding: 0 17px !important;
+    border: 1px solid #dedede;
+    border-radius: 999px;
+    background: #fff;
+    color: #111 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+#vp-global-addons .vp-gd-all:hover {
+    border-color: #bbb;
+    background: #fafafa;
+}
+
+
+/* STATUS */
+
+#vp-global-addons .vp-gd-status {
+    width: 100%;
+    padding: 25px;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    background: #fafafa;
+    color: #777;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1050px) {
+
+    #vp-global-addons .vp-gd-card {
+        flex-basis: calc((100% - 28px) / 3);
+    }
+
+}
+
+@media (max-width: 850px) {
+
+    #vp-global-addons .vp-gd-card {
+        flex-basis: calc((100% - 14px) / 2);
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    #vp-global-addons {
+        margin-top: 64px;
+    }
+
+    #vp-global-addons .vp-gd-head {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    #vp-global-addons .vp-gd-title {
+        font-size: 34px !important;
+    }
+
+    #vp-global-addons .vp-gd-sub {
+        font-size: 12px !important;
+    }
+
+    #vp-global-addons .vp-gd-nav {
+        display: none;
+    }
+
+    #vp-global-addons .vp-gd-card {
+        flex-basis: min(80vw,285px);
+        min-height: 375px;
+    }
+
+    #vp-global-addons .vp-gd-img {
+        height: 210px;
+        min-height: 210px;
+    }
+
+    #vp-global-addons .vp-gd-img img {
+        max-height: 180px !important;
+    }
+
+    #vp-global-addons .vp-gd-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+}
+</style>
+
+
+<script>
+(function () {
+
+    var CATEGORY_URL = "/doplnky/";
+    var SECTION_ID = "vp-global-addons";
+
+
+    /* =====================================================
+       NAJDI NAŠI EXISTUJÍCÍ SEKCI PŘÍSLUŠENSTVÍ
+       ===================================================== */
+
+    function findAccessoriesSection() {
+
+        var links =
+            Array.prototype.slice.call(
+                document.querySelectorAll(
+                    'a[href^="/pro-pax-"]'
+                )
+            );
+
+
+        /*
+         * Vybíráme odspodu,
+         * protože "Všechno příslušenství..."
+         * je vždy v naší poslední accessories sekci.
+         */
+
+        for (
+            var i = links.length - 1;
+            i >= 0;
+            i--
+        ) {
+
+            var link =
+                links[i];
+
+
+            var text =
+                (link.textContent || "")
+                .replace(/\s+/g," ")
+                .trim()
+                .toLowerCase();
+
+
+            var looksLikeOurButton =
+                link.classList.contains("vp-acc-all") ||
+                link.classList.contains("vp-accessory-all") ||
+                link.classList.contains("vp-pax4-all-link") ||
+                text.indexOf("všechno příslušenství") !== -1;
+
+
+            if (!looksLikeOurButton) {
+                continue;
+            }
+
+
+            var section =
+                link.closest(
+                    ".vp-section," +
+                    ".vp-accessories-section," +
+                    ".vp-pax4-accessories"
+                );
+
+
+            if (!section) {
+                section = link.closest("section");
+            }
+
+
+            if (section) {
+                return section;
+            }
+
+        }
+
+
+        return null;
+
+    }
+
+
+    /* =====================================================
+       CREATE SECTION
+       ===================================================== */
+
+    function createSection() {
+
+        var section =
+            document.createElement("section");
+
+
+        section.id =
+            SECTION_ID;
+
+
+        section.innerHTML =
+            '<div class="vp-gd-head">' +
+
+                '<div>' +
+
+                    '<span class="vp-gd-kicker">' +
+                        'PAX LIFESTYLE' +
+                    '</span>' +
+
+                    '<h2 class="vp-gd-title">' +
+                        'Doplňky.' +
+                    '</h2>' +
+
+                    '<p class="vp-gd-sub">' +
+                        'Univerzální doplňky pro přípravu, uložení a každodenní používání vašeho PAX.' +
+                    '</p>' +
+
+                '</div>' +
+
+                '<div class="vp-gd-nav">' +
+
+                    '<button class="vp-gd-arrow" id="vpGdPrev" type="button" aria-label="Předchozí produkty">' +
+                        '←' +
+                    '</button>' +
+
+                    '<button class="vp-gd-arrow" id="vpGdNext" type="button" aria-label="Další produkty">' +
+                        '→' +
+                    '</button>' +
+
+                '</div>' +
+
+            '</div>' +
+
+            '<div class="vp-gd-rail" id="vpGdRail">' +
+
+                '<div class="vp-gd-status">' +
+                    'Načítám doplňky…' +
+                '</div>' +
+
+            '</div>' +
+
+            '<a class="vp-gd-all" href="/doplnky/">' +
+                'Zobrazit všechny doplňky →' +
+            '</a>';
+
+
+        return section;
+
+    }
+
+
+    /* =====================================================
+       HELPERS
+       ===================================================== */
+
+    function clean(value) {
+
+        return (value || "")
+            .replace(/\s+/g," ")
+            .trim();
+
+    }
+
+
+    function normalize(value) {
+
+        return clean(value)
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g,"");
+
+    }
+
+
+    function absolute(value) {
+
+        if (!value) {
+            return "";
+        }
+
+
+        try {
+
+            return new URL(
+                value,
+                window.location.origin
+            ).href;
+
+        } catch (e) {
+
+            return value;
+
+        }
+
+    }
+
+
+    function imageSrc(img) {
+
+        if (!img) {
+            return "";
+        }
+
+
+        var attrs = [
+            "data-src",
+            "data-original",
+            "data-lazy",
+            "data-image",
+            "src"
+        ];
+
+
+        for (
+            var i = 0;
+            i < attrs.length;
+            i++
+        ) {
+
+            var value =
+                img.getAttribute(
+                    attrs[i]
+                );
+
+
+            if (
+                value &&
+                value.indexOf("data:image") !== 0
+            ) {
+
+                return absolute(value);
+
+            }
+
+        }
+
+
+        return "";
+
+    }
+
+
+    function getFlag(card) {
+
+        var nodes =
+            card.querySelectorAll(
+                ".flag," +
+                ".flags," +
+                ".flags-default," +
+                "[class*='flag-']"
+            );
+
+
+        var text =
+            "";
+
+
+        nodes.forEach(
+            function (node) {
+
+                text +=
+                    " " +
+                    node.textContent;
+
+            }
+        );
+
+
+        text =
+            normalize(text);
+
+
+        if (
+            text.indexOf("novinka") !== -1
+        ) {
+
+            return {
+                text: "Novinka",
+                css: "is-new"
+            };
+
+        }
+
+
+        if (
+            text.indexOf("akce") !== -1
+        ) {
+
+            return {
+                text: "Akce",
+                css: "is-action"
+            };
+
+        }
+
+
+        if (
+            text.indexOf("sleva") !== -1
+        ) {
+
+            return {
+                text: "Sleva",
+                css: "is-sale"
+            };
+
+        }
+
+
+        if (
+            text.indexOf("tip") !== -1
+        ) {
+
+            return {
+                text: "Tip",
+                css: "is-tip"
+            };
+
+        }
+
+
+        return null;
+
+    }
+
+
+    /* =====================================================
+       PARSE CATEGORY
+       ===================================================== */
+
+    function parseProducts(doc) {
+
+        var cards =
+            Array.prototype.slice.call(
+                doc.querySelectorAll(
+                    ".products .product," +
+                    ".products-block .product," +
+                    "#products .product"
+                )
+            );
+
+
+        var out =
+            [];
+
+
+        var seen =
+            {};
+
+
+        cards.forEach(
+            function (card) {
+
+                var name =
+                    card.querySelector(
+                        "a.name"
+                    );
+
+
+                if (!name) {
+                    return;
+                }
+
+
+                var href =
+                    absolute(
+                        name.getAttribute(
+                            "href"
+                        )
+                    );
+
+
+                var title =
+                    clean(
+                        name.textContent
+                    );
+
+
+                if (
+                    !href ||
+                    !title ||
+                    seen[href]
+                ) {
+
+                    return;
+
+                }
+
+
+                seen[href] =
+                    true;
+
+
+                var image =
+                    card.querySelector(
+                        "a.image img," +
+                        ".image img," +
+                        "img"
+                    );
+
+
+                var price =
+                    card.querySelector(
+                        ".price-final," +
+                        ".price"
+                    );
+
+
+                var stock =
+                    card.querySelector(
+                        ".availability," +
+                        ".availability-value"
+                    );
+
+
+                out.push({
+
+                    href:
+                        href,
+
+                    name:
+                        title,
+
+                    image:
+                        imageSrc(image),
+
+                    price:
+                        price
+                            ? clean(price.textContent)
+                            : "",
+
+                    stock:
+                        stock
+                            ? clean(stock.textContent)
+                            : "",
+
+                    flag:
+                        getFlag(card)
+
+                });
+
+            }
+        );
+
+
+        return out;
+
+    }
+
+
+    /* =====================================================
+       FALLBACK IMAGE CACHE
+       ===================================================== */
+
+    var imageCache =
+        {};
+
+
+    function resolveImage(product) {
+
+        if (product.image) {
+
+            return Promise.resolve(
+                product.image
+            );
+
+        }
+
+
+        if (
+            imageCache[
+                product.href
+            ]
+        ) {
+
+            return imageCache[
+                product.href
+            ];
+
+        }
+
+
+        imageCache[
+            product.href
+        ] =
+            fetch(
+                product.href,
+                {
+                    credentials:
+                        "same-origin"
+                }
+            )
+
+            .then(
+                function (response) {
+
+                    return response.ok
+                        ? response.text()
+                        : "";
+
+                }
+            )
+
+            .then(
+                function (html) {
+
+                    if (!html) {
+                        return "";
+                    }
+
+
+                    var doc =
+                        new DOMParser()
+                            .parseFromString(
+                                html,
+                                "text/html"
+                            );
+
+
+                    var meta =
+                        doc.querySelector(
+                            'meta[property="og:image"]'
+                        );
+
+
+                    return (
+                        meta &&
+                        meta.content
+                    )
+                        ? absolute(
+                            meta.content
+                        )
+                        : "";
+
+                }
+            )
+
+            .catch(
+                function () {
+
+                    return "";
+
+                }
+            );
+
+
+        return imageCache[
+            product.href
+        ];
+
+    }
+
+
+    /* =====================================================
+       CARD
+       ===================================================== */
+
+    function makeCard(
+        product,
+        duplicate
+    ) {
+
+        var card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "vp-gd-card";
+
+
+        if (duplicate) {
+
+            card.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+        }
+
+
+        var hit =
+            document.createElement(
+                "a"
+            );
+
+
+        hit.className =
+            "vp-gd-hit";
+
+
+        hit.href =
+            product.href;
+
+
+        hit.setAttribute(
+            "aria-label",
+            product.name
+        );
+
+
+        var image =
+            document.createElement(
+                "div"
+            );
+
+
+        image.className =
+            "vp-gd-img";
+
+
+        if (
+            product.flag
+        ) {
+
+            var badge =
+                document.createElement(
+                    "span"
+                );
+
+
+            badge.className =
+                "vp-gd-badge " +
+                product.flag.css;
+
+
+            badge.textContent =
+                product.flag.text;
+
+
+            image.appendChild(
+                badge
+            );
+
+        }
+
+
+        var img =
+            document.createElement(
+                "img"
+            );
+
+
+        img.alt =
+            product.name;
+
+
+        img.loading =
+            "lazy";
+
+
+        img.decoding =
+            "async";
+
+
+        image.appendChild(
+            img
+        );
+
+
+        resolveImage(
+            product
+        )
+
+        .then(
+            function (src) {
+
+                if (src) {
+                    img.src = src;
+                }
+
+            }
+        );
+
+
+        var body =
+            document.createElement(
+                "div"
+            );
+
+
+        body.className =
+            "vp-gd-body";
+
+
+        var title =
+            document.createElement(
+                "h3"
+            );
+
+
+        title.className =
+            "vp-gd-name";
+
+
+        title.textContent =
+            product.name;
+
+
+        var stock =
+            document.createElement(
+                "div"
+            );
+
+
+        stock.className =
+            "vp-gd-stock";
+
+
+        stock.textContent =
+            product.stock;
+
+
+        var bottom =
+            document.createElement(
+                "div"
+            );
+
+
+        bottom.className =
+            "vp-gd-bottom";
+
+
+        var price =
+            document.createElement(
+                "div"
+            );
+
+
+        price.className =
+            "vp-gd-price";
+
+
+        price.textContent =
+            product.price;
+
+
+        var detail =
+            document.createElement(
+                "span"
+            );
+
+
+        detail.className =
+            "vp-gd-detail";
+
+
+        detail.textContent =
+            "Detail";
+
+
+        bottom.appendChild(
+            price
+        );
+
+
+        bottom.appendChild(
+            detail
+        );
+
+
+        body.appendChild(
+            title
+        );
+
+
+        body.appendChild(
+            stock
+        );
+
+
+        body.appendChild(
+            bottom
+        );
+
+
+        card.appendChild(
+            hit
+        );
+
+
+        card.appendChild(
+            image
+        );
+
+
+        card.appendChild(
+            body
+        );
+
+
+        return card;
+
+    }
+
+
+    /* =====================================================
+       INFINITE LOOP
+       ===================================================== */
+
+    function renderLoop(
+        rail,
+        products
+    ) {
+
+        rail.innerHTML =
+            "";
+
+
+        if (
+            !products.length
+        ) {
+
+            rail.innerHTML =
+                '<div class="vp-gd-status">' +
+                    'Doplňky se nepodařilo načíst. ' +
+                    '<a href="/doplnky/">Otevřít kategorii →</a>' +
+                '</div>';
+
+            return;
+
+        }
+
+
+        /*
+         * 5 kopií celé sady.
+         * Začátek uprostřed.
+         */
+
+        for (
+            var set = 0;
+            set < 5;
+            set++
+        ) {
+
+            products.forEach(
+                function (product) {
+
+                    rail.appendChild(
+                        makeCard(
+                            product,
+                            set !== 2
+                        )
+                    );
+
+                }
+            );
+
+        }
+
+
+        var setWidth =
+            0;
+
+
+        requestAnimationFrame(
+            function () {
+
+                setWidth =
+                    rail.scrollWidth / 5;
+
+
+                rail.scrollLeft =
+                    setWidth * 2;
+
+            }
+        );
+
+
+        var timer =
+            null;
+
+
+        rail.addEventListener(
+            "scroll",
+            function () {
+
+                clearTimeout(
+                    timer
+                );
+
+
+                timer =
+                    setTimeout(
+                        function () {
+
+                            if (!setWidth) {
+                                return;
+                            }
+
+
+                            var x =
+                                rail.scrollLeft;
+
+
+                            if (
+                                x < setWidth
+                            ) {
+
+                                rail.scrollLeft =
+                                    x +
+                                    setWidth * 2;
+
+                            }
+
+
+                            if (
+                                x >
+                                setWidth * 4
+                            ) {
+
+                                rail.scrollLeft =
+                                    x -
+                                    setWidth * 2;
+
+                            }
+
+                        },
+                        90
+                    );
+
+            },
+            {
+                passive:
+                    true
+            }
+        );
+
+
+        function step() {
+
+            var card =
+                rail.querySelector(
+                    ".vp-gd-card"
+                );
+
+
+            if (!card) {
+                return 280;
+            }
+
+
+            var style =
+                window.getComputedStyle(
+                    rail
+                );
+
+
+            var gap =
+                parseFloat(
+                    style.gap ||
+                    "14"
+                );
+
+
+            return (
+                card
+                    .getBoundingClientRect()
+                    .width +
+                (
+                    isNaN(gap)
+                        ? 14
+                        : gap
+                )
+            );
+
+        }
+
+
+        var prev =
+            document.getElementById(
+                "vpGdPrev"
+            );
+
+
+        var next =
+            document.getElementById(
+                "vpGdNext"
+            );
+
+
+        if (next) {
+
+            next.addEventListener(
+                "click",
+                function () {
+
+                    rail.scrollBy({
+
+                        left:
+                            step(),
+
+                        behavior:
+                            "smooth"
+
+                    });
+
+                }
+            );
+
+        }
+
+
+        if (prev) {
+
+            prev.addEventListener(
+                "click",
+                function () {
+
+                    rail.scrollBy({
+
+                        left:
+                            -step(),
+
+                        behavior:
+                            "smooth"
+
+                    });
+
+                }
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       INIT
+       ===================================================== */
+
+    function init() {
+
+        /*
+         * Už vloženo?
+         */
+
+        if (
+            document.getElementById(
+                SECTION_ID
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        var accessories =
+            findAccessoriesSection();
+
+
+        /*
+         * Na stránkách bez našeho produktového
+         * accessories bloku neuděláme vůbec nic.
+         */
+
+        if (!accessories) {
+            return;
+        }
+
+
+        var section =
+            createSection();
+
+
+        accessories.insertAdjacentElement(
+            "afterend",
+            section
+        );
+
+
+        var rail =
+            section.querySelector(
+                "#vpGdRail"
+            );
+
+
+        fetch(
+            CATEGORY_URL,
+            {
+                credentials:
+                    "same-origin"
+            }
+        )
+
+        .then(
+            function (response) {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "HTTP " +
+                        response.status
+                    );
+
+                }
+
+
+                return response.text();
+
+            }
+        )
+
+        .then(
+            function (html) {
+
+                var doc =
+                    new DOMParser()
+                        .parseFromString(
+                            html,
+                            "text/html"
+                        );
+
+
+                renderLoop(
+                    rail,
+                    parseProducts(doc)
+                );
+
+            }
+        )
+
+        .catch(
+            function () {
+
+                rail.innerHTML =
+                    '<div class="vp-gd-status">' +
+                        'Doplňky se nepodařilo načíst. ' +
+                        '<a href="/doplnky/">Otevřít kategorii →</a>' +
+                    '</div>';
+
+            }
+        );
+
+    }
+
+
+    /*
+     * Server-rendered Shoptet většinou stačí DOMContentLoaded.
+     * Retry je jen pojistka pro případ,
+     * že se dlouhý popis vloží o něco později.
+     */
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            init
+        );
+
+    } else {
+
+        init();
+
+    }
+
+
+    setTimeout(
+        init,
+        400
+    );
+
+
+    setTimeout(
+        init,
+        1200
+    );
+
+})();
+</script>
