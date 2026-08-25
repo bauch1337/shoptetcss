@@ -2129,3 +2129,15 @@ img[src="https://cdn.myshoptet.com/usr/www.va-pax.cz/user/banners/yeye.png?5fb28
     padding: 0 !important;
     overflow: hidden !important;
 }
+
+/* ==========================================================
+   22. FOOTER NO-FLASH FIX
+   ========================================================== */
+
+[data-vp-footer]:not(.vp-footer-mounted) {
+    display: none !important;
+}
+
+[data-vp-footer].vp-footer-mounted {
+    display: block !important;
+}
