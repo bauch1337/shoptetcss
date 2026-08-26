@@ -1,11 +1,6 @@
 /*
  * ==========================================================
  * VA-PAX.CZ MASTER JAVASCRIPT
- *
- * Obsah:
- * 1) Minimalistický VA-PAX footer
- * 2) Odstranění Shoptet brandingu
- * 3) PAX příslušenství – "Kompatibilní s" dropdown
  * ==========================================================
  */
 
@@ -27,9 +22,6 @@
         }
 
 
-        /*
-         * Odstraníme "Vytvořil Shoptet"
-         */
         var signature =
             shoptetFooter.querySelector("#signature");
 
@@ -38,10 +30,6 @@
         }
 
 
-        /*
-         * Pokud už náš footer existuje,
-         * nevytváříme ho podruhé.
-         */
         if (
             shoptetFooter.querySelector(
                 "[data-vp-footer]"
@@ -173,15 +161,11 @@
 
                 <div class="vp-footer-meta-left">
 
-                    <span>
-                        VA-PAX.CZ
-                    </span>
+                    <span>VA-PAX.CZ</span>
 
                     <span class="vp-footer-dot"></span>
 
-                    <span>
-                        Praha 2
-                    </span>
+                    <span>Praha 2</span>
 
                 </div>
 
@@ -223,8 +207,7 @@
 
 
     /* ======================================================
-       2. PAX PŘÍSLUŠENSTVÍ
-       "KOMPATIBILNÍ S" DROPDOWN
+       2. PAX PŘÍSLUŠENSTVÍ DROPDOWN
        ====================================================== */
 
     function initCompatibleSelector() {
@@ -232,7 +215,7 @@
         var routes = [
             {
                 href: "/paxprislusenstvi/",
-                label: "Všechny"
+                label: "Vše"
             },
             {
                 href: "/pro-pax-4/",
@@ -261,12 +244,6 @@
         ];
 
 
-        /*
-         * Stránkování:
-         * /strana-2/
-         * /strana-3/
-         * se bere jako stejná kategorie.
-         */
         var currentPath =
             window.location.pathname
                 .replace(
@@ -275,26 +252,19 @@
                 );
 
 
-        var isAccessoryCategory =
-            routes.some(
+        var currentRoute =
+            routes.find(
                 function (route) {
                     return currentPath === route.href;
                 }
             );
 
 
-        /*
-         * Pokud nejsme na stránce příslušenství,
-         * nic neděláme.
-         */
-        if (!isAccessoryCategory) {
+        if (!currentRoute) {
             return;
         }
 
 
-        /*
-         * Zabráníme dvojímu vložení.
-         */
         if (
             document.querySelector(
                 ".vp-compatible-selector"
@@ -326,8 +296,7 @@
 
 
         /*
-         * Pokud existují původní obrázkové
-         * Shoptet podkategorie, schováme je.
+         * Schováme původní obrázkové podkategorie.
          */
         var nativeCategories =
             categoryTop.querySelector(
@@ -339,6 +308,7 @@
             nativeCategories.style.display =
                 "none";
         }
+
 
 
         /* ==================================================
@@ -386,11 +356,17 @@
 
 
 
+        /*
+         * TADY JE HLAVNÍ ZMĚNA:
+         *
+         * místo "Kompatibilní s:"
+         * ukážeme aktuální kategorii.
+         */
         var label =
             document.createElement("span");
 
         label.textContent =
-            "Kompatibilní s:";
+            currentRoute.label;
 
 
 
@@ -412,6 +388,7 @@
             label
         );
 
+
         button.appendChild(
             chevron
         );
@@ -430,6 +407,7 @@
 
         menu.id =
             "vp-compatible-menu";
+
 
 
         routes.forEach(
@@ -451,9 +429,9 @@
                     route.label;
 
 
+
                 /*
-                 * Aktuální kategorie
-                 * se označí.
+                 * Aktuálně zvolená stránka.
                  */
                 if (
                     currentPath === route.href
@@ -492,9 +470,6 @@
 
 
 
-        /*
-         * Vloží dropdown pod H1.
-         */
         title.insertAdjacentElement(
             "afterend",
             selector
@@ -503,7 +478,7 @@
 
 
         /* ==================================================
-           FUNKCE
+           OVLÁDÁNÍ
            ================================================== */
 
         function closeMenu() {
@@ -521,10 +496,6 @@
         }
 
 
-
-        /* ==================================================
-           CLICK
-           ================================================== */
 
         button.addEventListener(
             "click",
@@ -553,9 +524,6 @@
 
 
 
-        /*
-         * Klik mimo menu = zavřít.
-         */
         document.addEventListener(
             "click",
             function (event) {
@@ -575,9 +543,6 @@
 
 
 
-        /*
-         * ESC = zavřít.
-         */
         document.addEventListener(
             "keydown",
             function (event) {
