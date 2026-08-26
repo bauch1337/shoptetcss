@@ -198,12 +198,6 @@
         `;
 
 
-        /*
-         * Vložíme náš footer přímo před
-         * Shoptet copyright.
-         *
-         * Díky tomu nikde nahoře neproblikává.
-         */
         var footerBottom =
             shoptetFooter.querySelector(
                 ".footer-bottom"
@@ -235,22 +229,71 @@
 
     function initCompatibleSelector() {
 
+        var routes = [
+            {
+                href: "/paxprislusenstvi/",
+                label: "Všechny"
+            },
+            {
+                href: "/pro-pax-4/",
+                label: "PAX 4"
+            },
+            {
+                href: "/pro-pax-flow/",
+                label: "PAX Flow"
+            },
+            {
+                href: "/pro-pax-mini/",
+                label: "PAX Mini"
+            },
+            {
+                href: "/pro-pax-plus/",
+                label: "PAX Plus"
+            },
+            {
+                href: "/pro-pax-3/",
+                label: "PAX 3"
+            },
+            {
+                href: "/doplnky/",
+                label: "Doplňky"
+            }
+        ];
+
+
         /*
-         * Pouze hlavní kategorie
-         * /paxprislusenstvi/
+         * Stránkování:
+         * /strana-2/
+         * /strana-3/
+         * se bere jako stejná kategorie.
          */
-        if (
-            !document.body ||
-            !document.body.classList.contains(
-                "in-paxprislusenstvi"
-            )
-        ) {
+        var currentPath =
+            window.location.pathname
+                .replace(
+                    /\/strana-\d+\/?$/i,
+                    "/"
+                );
+
+
+        var isAccessoryCategory =
+            routes.some(
+                function (route) {
+                    return currentPath === route.href;
+                }
+            );
+
+
+        /*
+         * Pokud nejsme na stránce příslušenství,
+         * nic neděláme.
+         */
+        if (!isAccessoryCategory) {
             return;
         }
 
 
         /*
-         * Zabrání vložení dvakrát.
+         * Zabráníme dvojímu vložení.
          */
         if (
             document.querySelector(
@@ -274,38 +317,28 @@
             );
 
 
-        var nativeCategories =
-            categoryTop &&
-            categoryTop.querySelector(
-                "ul.subcategories.with-image"
-            );
-
-
         if (
             !categoryTop ||
-            !title ||
-            !nativeCategories
+            !title
         ) {
             return;
         }
 
 
         /*
-         * Vezmeme odkazy přímo ze Shoptetu.
-         *
-         * Tzn. nemusíš URL kategorií
-         * udržovat ručně v JS.
+         * Pokud existují původní obrázkové
+         * Shoptet podkategorie, schováme je.
          */
-        var sourceLinks =
-            nativeCategories.querySelectorAll(
-                ":scope > li > a[href]"
+        var nativeCategories =
+            categoryTop.querySelector(
+                "ul.subcategories.with-image"
             );
 
 
-        if (!sourceLinks.length) {
-            return;
+        if (nativeCategories) {
+            nativeCategories.style.display =
+                "none";
         }
-
 
 
         /* ==================================================
@@ -386,7 +419,7 @@
 
 
         /* ==================================================
-           DROPDOWN MENU
+           MENU
            ================================================== */
 
         var menu =
@@ -399,49 +432,8 @@
             "vp-compatible-menu";
 
 
-
-        /*
-         * První možnost = všechny produkty
-         */
-        var allItem =
-            document.createElement("li");
-
-
-        var allLink =
-            document.createElement("a");
-
-
-        allLink.href =
-            "/paxprislusenstvi/";
-
-
-        allLink.textContent =
-            "Všechny";
-
-
-        allItem.appendChild(
-            allLink
-        );
-
-
-        menu.appendChild(
-            allItem
-        );
-
-
-
-        /*
-         * Zkopírujeme současné Shoptet kategorie:
-         *
-         * Pro PAX 4
-         * Pro PAX Flow
-         * Pro PAX Mini
-         * Pro PAX Plus
-         * Pro PAX 3
-         * Doplňky
-         */
-        sourceLinks.forEach(
-            function (sourceLink) {
+        routes.forEach(
+            function (route) {
 
                 var item =
                     document.createElement("li");
@@ -451,44 +443,28 @@
                     document.createElement("a");
 
 
-                var textNode =
-                    sourceLink.querySelector(
-                        ".text"
-                    );
-
-
-                var text =
-                    textNode
-                        ? textNode.textContent
-                        : sourceLink.textContent;
-
-
-                /*
-                 * "Pro PAX 4"
-                 * ->
-                 * "PAX 4"
-                 */
-                text =
-                    text
-                        .replace(
-                            /^\s*Pro\s+/i,
-                            ""
-                        )
-                        .replace(
-                            /\s+/g,
-                            " "
-                        )
-                        .trim();
-
-
                 link.href =
-                    sourceLink.getAttribute(
-                        "href"
-                    );
+                    route.href;
 
 
                 link.textContent =
-                    text;
+                    route.label;
+
+
+                /*
+                 * Aktuální kategorie
+                 * se označí.
+                 */
+                if (
+                    currentPath === route.href
+                ) {
+
+                    link.setAttribute(
+                        "aria-current",
+                        "page"
+                    );
+
+                }
 
 
                 item.appendChild(
@@ -517,11 +493,7 @@
 
 
         /*
-         * Dropdown vložíme hned pod H1:
-         *
-         * PAX příslušenství
-         *
-         * [ Kompatibilní s:  v ]
+         * Vloží dropdown pod H1.
          */
         title.insertAdjacentElement(
             "afterend",
@@ -582,8 +554,7 @@
 
 
         /*
-         * Kliknutí mimo dropdown
-         * jej zavře.
+         * Klik mimo menu = zavřít.
          */
         document.addEventListener(
             "click",
@@ -605,7 +576,7 @@
 
 
         /*
-         * ESC dropdown zavře.
+         * ESC = zavřít.
          */
         document.addEventListener(
             "keydown",
@@ -632,7 +603,7 @@
 
 
     /* ======================================================
-       3. START VA-PAX
+       3. START
        ====================================================== */
 
     function initVaPax() {
@@ -644,9 +615,6 @@
     }
 
 
-    /*
-     * Spuštění po připravení DOM.
-     */
     if (
         document.readyState ===
         "loading"
