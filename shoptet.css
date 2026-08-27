@@ -2774,3 +2774,167 @@ body.in-paxprislusenstvi .category-top,
     }
 }
 
+/* ==========================================================
+   27. DESKTOP MAIN DROPDOWN V2
+   OKAMŽITÉ OTEVŘENÍ + CLICK AREA FIX PRO MENŠÍ NOTEBOOKY
+   ========================================================== */
+
+@media (min-width: 1001px) {
+
+    /*
+     * Starý Shoptet/jQuery kód používá slideDown / slideUp,
+     * který zapisuje inline height a overflow.
+     *
+     * Tímto ho vizuálně úplně neutralizujeme.
+     */
+    .navigation-in > ul > li > ul.menu-level-2 {
+        display: block !important;
+
+        height: auto !important;
+        min-height: 0 !important;
+
+        padding: 10px !important;
+
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+
+        /*
+         * Bez scale animace – dropdown se zobrazí celý
+         * najednou a pouze velmi jemně fade-in.
+         */
+        transform:
+            translate(-50%, 0) !important;
+
+        transition:
+            opacity 0.08s ease,
+            visibility 0s linear 0.09s !important;
+
+        will-change: opacity;
+    }
+
+
+    .navigation-in > ul > li:hover > ul.menu-level-2,
+    .navigation-in > ul > li:focus-within > ul.menu-level-2 {
+        height: auto !important;
+
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+
+        transform:
+            translate(-50%, 0) !important;
+
+        transition:
+            opacity 0.08s ease,
+            visibility 0s !important;
+    }
+
+
+    /*
+     * DŮLEŽITÉ:
+     * každý top-level <li> dříve vytvářel stacking context
+     * se stejným z-indexem. Na menších displejích tak mohl
+     * sousední menu item překrýt horní část dropdownu.
+     */
+    .navigation-in > ul > li {
+        z-index: auto !important;
+    }
+
+
+    /*
+     * Pouze právě aktivní položka s otevřeným dropdownem
+     * dostane vysoký stacking order.
+     */
+    .navigation-in > ul > li:hover,
+    .navigation-in > ul > li:focus-within {
+        z-index: 1000 !important;
+    }
+
+
+    .navigation-in > ul > li:hover > a,
+    .navigation-in > ul > li:focus-within > a {
+        position: relative !important;
+        z-index: 2 !important;
+    }
+
+
+    .navigation-in > ul > li > ul.menu-level-2 {
+        z-index: 1001 !important;
+    }
+
+
+    /*
+     * Celá plocha každého dropdown odkazu je skutečně
+     * klikací – nejen samotný text.
+     */
+    .navigation-in > ul > li > ul.menu-level-2 > li {
+        pointer-events: auto !important;
+    }
+
+
+    .navigation-in > ul > li > ul.menu-level-2 > li > a {
+        display: flex !important;
+
+        align-items: center !important;
+
+        width: 100% !important;
+        min-height: 42px !important;
+
+        box-sizing: border-box !important;
+
+        pointer-events: auto !important;
+
+        cursor: pointer !important;
+
+        position: relative !important;
+        z-index: 3 !important;
+    }
+
+
+    /*
+     * Transparentní hover bridge nesmí nikdy přikrýt
+     * samotné položky dropdownu.
+     */
+    .navigation-in > ul > li:has(> ul.menu-level-2)::after {
+        z-index: 1 !important;
+    }
+
+
+    /*
+     * PAX + PAX příslušenství mají krátké seznamy.
+     * Na notebooku budou kompaktní a stabilní.
+     */
+    .navigation-in > ul > li.menu-item-673 > ul.menu-level-2,
+    .navigation-in > ul > li.menu-item-691 > ul.menu-level-2 {
+        width: 270px !important;
+        min-width: 270px !important;
+        max-width: 270px !important;
+
+        max-height: none !important;
+    }
+}
+
+
+/* ======================================================
+   MENŠÍ DESKTOP / NOTEBOOK
+   ====================================================== */
+
+@media (min-width: 1001px) and (max-width: 1366px) {
+
+    .navigation-in > ul > li.menu-item-673 > ul.menu-level-2,
+    .navigation-in > ul > li.menu-item-691 > ul.menu-level-2 {
+        width: 250px !important;
+        min-width: 250px !important;
+        max-width: 250px !important;
+    }
+
+
+    .navigation-in > ul > li > ul.menu-level-2 > li > a {
+        min-height: 40px !important;
+
+        padding:
+            10px
+            13px !important;
+    }
+}
+
