@@ -204,11 +204,7 @@
                         VINOTÉKA ZBIROH
                     </span>
 
-                    <span class="vp-footer-dot"></span>
-
-                    <span>
-                        Zbiroh
-                    </span>
+                   
 
                 </div>
 
@@ -216,7 +212,7 @@
                 <div class="vp-footer-meta-right">
 
                     <span>
-                        Vína ze Zámku Zbiroh
+                        Zámek Zbiroh
                     </span>
 
                 </div>
