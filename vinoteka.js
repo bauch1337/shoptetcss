@@ -201,7 +201,7 @@
                 <div class="vp-footer-meta-left">
 
                     <span>
-                        VINOTÉKA ZBIROH
+                        Vinotéka Zbiroh
                     </span>
 
                    
