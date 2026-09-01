@@ -85,7 +85,7 @@
                     <p class="vp-footer-brand-text">
                         Vína z nejvýše položené registrované
                         vinice v České republice, přímo
-                        ze Zámku Zbiroh.
+                        ze zámku Zbiroh.
                     </p>
 
                 </div>
