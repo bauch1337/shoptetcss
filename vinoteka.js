@@ -4,308 +4,271 @@
  * MASTER JAVASCRIPT
  * Shoptet / Waltz
  * ==========================================================
- *
- * Určeno k použití společně s:
- * vinotekazbiroh-master.css
- *
- * Co tento soubor dělá:
- * 1) odstraní případné zbytky starého VA-PAX custom JS,
- * 2) NEVYTVÁŘÍ vlastní footer – používá nativní Shoptet footer,
- * 3) stabilizuje desktopový Waltz dropdown proti inline
- *    slideDown / slideUp stylům,
- * 4) na mobilní navigaci záměrně nesahá,
- * 5) nechává Shoptetu košík, cookie lištu, 18+ kontrolu,
- *    přihlášení, vyhledávání a další systémové funkce.
  */
 
 (function () {
     "use strict";
 
-    var DESKTOP_BREAKPOINT = 1001;
-    var dropdownObserver = null;
-    var navigationObserver = null;
-    var rafId = null;
-
 
     /* ======================================================
-       1. HELPERS
+       1. VINOTÉKA ZBIROH FOOTER
        ====================================================== */
 
-    function isDesktop() {
-        return window.innerWidth >= DESKTOP_BREAKPOINT;
-    }
+    function mountVinotekaFooter() {
 
+        var shoptetFooter =
+            document.querySelector("#footer");
 
-    function schedule(callback) {
-        if (rafId) {
-            window.cancelAnimationFrame(rafId);
+        if (!shoptetFooter) {
+            return;
         }
 
-        rafId = window.requestAnimationFrame(function () {
-            rafId = null;
-            callback();
-        });
-    }
+
+        /*
+         * Odstranění Shoptet signature.
+         */
+        var signature =
+            shoptetFooter.querySelector("#signature");
+
+        if (signature) {
+            signature.remove();
+        }
 
 
-    /* ======================================================
-       2. ODSTRANĚNÍ STARÝCH VA-PAX PRVKŮ
-       ====================================================== */
-
-    function cleanupLegacyVaPax() {
-        var legacySelectors = [
-            "[data-vp-footer]",
-            ".vp-compatible-selector"
-        ];
-
-        document
-            .querySelectorAll(legacySelectors.join(","))
-            .forEach(function (element) {
-                element.remove();
-            });
-    }
+        /*
+         * Footer už existuje = nic dalšího nevkládáme.
+         */
+        if (
+            shoptetFooter.querySelector(
+                "[data-vp-footer]"
+            )
+        ) {
+            return;
+        }
 
 
-    /* ======================================================
-       3. DESKTOP WALTZ DROPDOWN FIX
-       ======================================================
+        /*
+         * Vytvoření vlastního footeru.
+         */
+        var footer =
+            document.createElement("div");
 
-       Waltz / starší Shoptet JS může při hoveru používat
-       jQuery slideDown / slideUp a zapisovat inline hodnoty:
+        footer.className =
+            "vp-footer-shell vp-footer-mounted";
 
-       display
-       height
-       overflow
-
-       CSS master má vlastní desktopový dropdown, takže na
-       desktopu tyto inline hodnoty průběžně odstraníme.
-
-       Na mobilu se do submenu NEZASAHUJE.
-       ====================================================== */
-
-    function getDesktopDropdowns() {
-        return document.querySelectorAll(
-            ".navigation-in > ul > li > ul.menu-level-2"
+        footer.setAttribute(
+            "data-vp-footer",
+            ""
         );
-    }
 
 
-    function normalizeDropdown(dropdown) {
-        if (!dropdown || !isDesktop()) {
-            return;
+        footer.innerHTML = `
+            <div class="vp-footer-grid">
+
+                <!-- ==========================================
+                     BRAND
+                     ========================================== -->
+
+                <div class="vp-footer-brand">
+
+                    <a
+                        class="vp-footer-logo"
+                        href="/"
+                    >
+                        VINOTÉKA ZBIROH
+                    </a>
+
+                    <div class="vp-footer-brand-label">
+                        Zámecká vinotéka
+                    </div>
+
+                    <p class="vp-footer-brand-text">
+                        Vína z nejvýše položené registrované
+                        vinice v České republice, přímo
+                        ze Zámku Zbiroh.
+                    </p>
+
+                </div>
+
+
+                <!-- ==========================================
+                     OBCHOD
+                     ========================================== -->
+
+                <div class="vp-footer-column">
+
+                    <span class="vp-footer-column-title">
+                        Obchod
+                    </span>
+
+                    <div class="vp-footer-links">
+
+                        <a href="/vino/">
+                            Víno
+                        </a>
+
+                        <a href="/ochutnavky-vin/">
+                            Ochutnávky vín
+                        </a>
+
+                        <a href="/kontakty/">
+                            Kontakt
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     KONTAKT / POMOC
+                     ========================================== -->
+
+                <div class="vp-footer-column">
+
+                    <span class="vp-footer-column-title">
+                        Kontakt
+                    </span>
+
+                    <div class="vp-footer-links">
+
+                        <a href="tel:+420601001430">
+                            +420 601 001 430
+                        </a>
+
+                        <a href="mailto:info@zbiroh.com">
+                            info@zbiroh.com
+                        </a>
+
+                        <a href="/obchodni-podminky/">
+                            Obchodní podmínky
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     ZBIROH
+                     ========================================== -->
+
+                <div class="vp-footer-column">
+
+                    <span class="vp-footer-column-title">
+                        ZBIROH
+                    </span>
+
+                    <div class="vp-footer-links">
+
+                        <a
+                            href="https://www.zbiroh.com/"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            Zámek Zbiroh
+                        </a>
+
+                        <a
+                            href="https://www.instagram.com/chateauzbiroh/"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            Instagram
+                        </a>
+
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query=Z%C3%A1mek+Zbiroh%2C+Z%C3%A1mek+1%2C+338+08+Zbiroh"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            Zámek č.p. 1, 338 08 Zbiroh
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==============================================
+                 SPODNÍ META ŘÁDEK
+                 ============================================== -->
+
+            <div class="vp-footer-meta">
+
+                <div class="vp-footer-meta-left">
+
+                    <span>
+                        VINOTÉKA ZBIROH
+                    </span>
+
+                    <span class="vp-footer-dot"></span>
+
+                    <span>
+                        Zbiroh
+                    </span>
+
+                </div>
+
+
+                <div class="vp-footer-meta-right">
+
+                    <span>
+                        Vína ze Zámku Zbiroh
+                    </span>
+
+                </div>
+
+            </div>
+        `;
+
+
+        /*
+         * Vložíme vlastní footer PŘED systémový footer-bottom,
+         * stejně jako u VA-PAX.
+         */
+        var footerBottom =
+            shoptetFooter.querySelector(
+                ".footer-bottom"
+            );
+
+
+        if (footerBottom) {
+
+            shoptetFooter.insertBefore(
+                footer,
+                footerBottom
+            );
+
+        } else {
+
+            shoptetFooter.appendChild(
+                footer
+            );
+
         }
 
-        var style = dropdown.style;
-
-        [
-            "display",
-            "height",
-            "min-height",
-            "max-height",
-            "overflow",
-            "overflow-x",
-            "overflow-y"
-        ].forEach(function (property) {
-            if (style.getPropertyValue(property)) {
-                style.removeProperty(property);
-            }
-        });
     }
 
-
-    function normalizeAllDropdowns() {
-        if (!isDesktop()) {
-            return;
-        }
-
-        getDesktopDropdowns().forEach(function (dropdown) {
-            normalizeDropdown(dropdown);
-        });
-    }
-
-
-    function stopDropdownObserver() {
-        if (dropdownObserver) {
-            dropdownObserver.disconnect();
-            dropdownObserver = null;
-        }
-    }
-
-
-    function observeDropdownStyles() {
-        stopDropdownObserver();
-
-        if (!isDesktop()) {
-            return;
-        }
-
-        var navigation =
-            document.querySelector(".navigation-in");
-
-        if (!navigation) {
-            return;
-        }
-
-        dropdownObserver =
-            new MutationObserver(function (mutations) {
-
-                var needsNormalize = false;
-
-                mutations.forEach(function (mutation) {
-
-                    if (
-                        mutation.type === "attributes" &&
-                        mutation.attributeName === "style" &&
-                        mutation.target.matches(
-                            ".navigation-in > ul > li > ul.menu-level-2"
-                        )
-                    ) {
-                        needsNormalize = true;
-                    }
-
-                });
-
-
-                if (needsNormalize) {
-                    schedule(normalizeAllDropdowns);
-                }
-
-            });
-
-
-        dropdownObserver.observe(
-            navigation,
-            {
-                subtree: true,
-                attributes: true,
-                attributeFilter: ["style"]
-            }
-        );
-    }
 
 
     /* ======================================================
-       4. NAVIGACE – OBNOVA PŘI DYNAMICKÉ ZMĚNĚ DOM
-       ====================================================== */
-
-    function initNavigationFix() {
-        normalizeAllDropdowns();
-        observeDropdownStyles();
-    }
-
-
-    function observeNavigationReplacement() {
-
-        if (navigationObserver) {
-            navigationObserver.disconnect();
-        }
-
-
-        var header =
-            document.querySelector("#header");
-
-
-        if (!header) {
-            return;
-        }
-
-
-        navigationObserver =
-            new MutationObserver(function (mutations) {
-
-                var navigationChanged =
-                    mutations.some(function (mutation) {
-                        return mutation.type === "childList";
-                    });
-
-
-                if (navigationChanged) {
-                    schedule(initNavigationFix);
-                }
-
-            });
-
-
-        navigationObserver.observe(
-            header,
-            {
-                childList: true,
-                subtree: true
-            }
-        );
-    }
-
-
-    /* ======================================================
-       5. BREAKPOINT / RESIZE
-       ====================================================== */
-
-    function bindViewportChanges() {
-
-        var lastDesktopState =
-            isDesktop();
-
-
-        window.addEventListener(
-            "resize",
-            function () {
-
-                schedule(function () {
-
-                    var currentDesktopState =
-                        isDesktop();
-
-
-                    if (
-                        currentDesktopState !==
-                        lastDesktopState
-                    ) {
-
-                        lastDesktopState =
-                            currentDesktopState;
-
-                        initNavigationFix();
-
-                        return;
-                    }
-
-
-                    if (currentDesktopState) {
-                        normalizeAllDropdowns();
-                    }
-
-                });
-
-            },
-            {
-                passive: true
-            }
-        );
-    }
-
-
-    /* ======================================================
-       6. START
+       2. START
        ====================================================== */
 
     function initVinotekaZbiroh() {
 
-        cleanupLegacyVaPax();
+        mountVinotekaFooter();
 
-        initNavigationFix();
-
-        observeNavigationReplacement();
-
-        bindViewportChanges();
-
-
-        document
-            .documentElement
-            .classList
-            .add("vz-js-ready");
     }
 
 
+    /*
+     * Pokud ještě není DOM načtený,
+     * počkáme na DOMContentLoaded.
+     */
     if (
         document.readyState ===
         "loading"
